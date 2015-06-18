@@ -1,0 +1,38 @@
+
+#include<stdio.h>
+
+
+int stringCmp(char a[], char b[])
+{
+	unsigned char x,y;
+	unsigned char i = 0;
+
+	do
+	{
+		x = (unsigned char)a[i];
+		y = (unsigned char)b[i];
+
+		i ++;
+
+		//如果有一个字符串结束，则返回
+		if(y == '\0' || x == '\0')
+		{
+			return x - y;
+		}
+		
+	}while(x == y);
+	
+	return x - y;
+}
+
+
+int main(int argc,char *argv[])
+{
+	char a[20] = "i am a boy";
+	char b[20] = "i am";
+
+	printf("%d",stringCmp(a,b));
+	
+	return 0;
+
+}
