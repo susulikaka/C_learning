@@ -1,0 +1,64 @@
+
+#include<stdio.h>
+#include<string.h>
+#include<ctype.h>
+
+//将字符串转换为浮点数
+double atof(char *a)
+{
+	int sign = 1;
+	//此处3个变量必须赋值为double型变量
+	double digit = 0.0;
+	double decimal = 0.0;
+	double power = 10.0;
+
+	int i = 0;
+	//开始循环遍历字符串，依次遇到 空格，数字，小数点，数字，则开始转换
+	for(; isspace(a[i]) ; i ++)
+	{
+		;
+	}
+
+	switch(a[i])
+	{
+	case '+':
+		i ++;
+		break;
+	case '-':
+		sign = -1;
+		i ++;
+		break;
+	default:
+		break;
+	}
+
+	for(; isdigit(a[i]); i ++)
+	{
+		digit = digit * 10 + a[i] - '0';
+	}
+
+	if(a[i] == '.')
+	{
+		i ++;
+	}
+
+	for(; isdigit(a[i]); i ++)
+	{
+	//a[i] - '0' 即将字符转为数字，此处为int型
+		decimal = decimal + (a[i] - '0') / power;
+		power *= 10;
+	}
+	return sign * (digit + decimal);
+
+}
+
+
+int main(int argc,char *argv[])
+{
+	char a[20] = "   -123.345";
+	double ax = 0;
+	ax = atof(a);
+	printf("%lf",ax);
+	return 0;
+
+}
